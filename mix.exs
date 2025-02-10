@@ -8,12 +8,12 @@ defmodule ElixirDraft.MixProject do
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-			elixirc_paths: elixirc_paths(Mix.env())
+      elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
 
-	defp elixirc_paths(:test), do: ["lib", "test/support"]
-	defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do
@@ -26,7 +26,9 @@ defmodule ElixirDraft.MixProject do
   defp deps do
     [
       {:benchee, "~> 1.1", only: :dev},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.4"},
+      # To parse XML
+      {:sweet_xml, "~> 0.7"}
     ]
   end
 end
