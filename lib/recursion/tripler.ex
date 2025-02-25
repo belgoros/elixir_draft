@@ -7,6 +7,7 @@ defmodule Recursion.Tripler do
 
   def triple([]) do
     IO.puts("Done")
+    []
   end
 end
 
