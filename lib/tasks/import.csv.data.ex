@@ -1,4 +1,5 @@
 defmodule Mix.Tasks.Import.Csv.Data do
+	require Logger
   @moduledoc """
     This task imports CSV data into the application.
 
@@ -17,13 +18,11 @@ defmodule Mix.Tasks.Import.Csv.Data do
   def run(args) do
     # This will start our application
     # Mix.Task.run("app.start")
-
-    case CsvLoader.load(Enum.join(args)) do
-      {:ok, data} ->
-        IO.puts("Data loaded successfully: \n#{inspect(data)}")
-
-      {:error, reason} ->
-        IO.puts("Error loading data: #{reason}")
-    end
+		
+		result = CsvLoader.load(Enum.join(args))
+		case result do
+			{:ok, data } -> Logger.info "Data loaded successfully: #{Enum.count(data)} rows processed"
+			{:error, reason} -> Logger.warning(reason)
+		end
   end
 end
