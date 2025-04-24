@@ -1,4 +1,4 @@
-defmodule Files.ReadFile do
+defmodule Files.FileReader do
 
 	@scraper_data "lib/scraper_data.txt"
 	@todos_file "lib/todos.csv"
@@ -23,16 +23,22 @@ defmodule Files.ReadFile do
 	end
 
 	def read_csv(file_path) do
-	    file_path
+		try	do
+	    data = file_path
 	    |> File.stream!()
 	    |> Stream.drop(1) # Skip the header
 	    |> Stream.map(&parse_line/1)
 	    |> Enum.to_list()
-	  end
+			{:ok, data}
+			
+		rescue
+			_ -> {:error, "Access error for the file: " <> file_path}			
+		end		
+	end
 
-	  defp parse_line(line) do
-	    line
-	    |> String.trim()     # Remove newline characters
-	    |> String.split(";") # Split by semicolon
-	  end
+  defp parse_line(line) do
+    line
+    |> String.trim()     # Remove newline characters
+    |> String.split(";") # Split by semicolon
+  end
 end
