@@ -5,25 +5,11 @@ defmodule FizzBuzz do
   def run(number) do
     1..number
     |> Enum.to_list()
-    |> Enum.map(fn x ->
-      cond do
-        is_fizz?(x) -> "Fizz"
-        is_buzz?(x) -> "Buzz"
-        is_fizz_and_buzz?(x) -> "FizzBuzz"
-        true -> Integer.to_string(x)
-      end
-    end)
+    |> Enum.map(&fizzbuzz/1)
   end
 
-  defp is_fizz?(number) do
-    Integer.mod(number, 3) == 0
-  end
-
-  defp is_buzz?(number) do
-    Integer.mod(number, 5) == 0
-  end
-
-  defp is_fizz_and_buzz?(number) do
-    is_fizz?(number) && is_buzz?(number)
-  end
+  defp fizzbuzz(number) when rem(number, 15) == 0, do: "FizzBuzz"
+  defp fizzbuzz(number) when rem(number, 5) == 0, do: "Buzz"
+  defp fizzbuzz(number) when rem(number, 3) == 0, do: "Fizz"
+  defp fizzbuzz(number), do: Integer.to_string(number)
 end
