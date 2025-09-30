@@ -8,9 +8,9 @@ defmodule Fibonacci do
     |> Stream.map(fn {_prev, cur} -> cur end)
   end
 
-	def stream_unfold(limit) do
-		Stream.unfold({0,1}, fn {f1,f2} -> {f1, {f2, f1 + f2}} end) |> Enum.take(limit)
-	end
+  def stream_unfold(limit) do
+    Stream.unfold({0, 1}, fn {f1, f2} -> {f1, {f2, f1 + f2}} end) |> Enum.take(limit)
+  end
 end
 
 # the two original examples
@@ -33,4 +33,4 @@ Fibonacci.stream()
 |> IO.inspect()
 
 IO.puts("Result when calling Stream.unfold/2 for 10 numbers:")
-Fibonacci.stream_unfold(10) |> IO.inspect
+Fibonacci.stream_unfold(10) |> IO.inspect()

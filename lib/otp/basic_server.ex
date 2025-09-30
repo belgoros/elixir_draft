@@ -1,7 +1,7 @@
 defmodule OTP.BasicServer do
-	use GenServer
+  use GenServer
 
-	# Client
+  # Client
 
   def start_link(default) when is_binary(default) do
     GenServer.start_link(__MODULE__, default)

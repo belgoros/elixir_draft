@@ -35,5 +35,3 @@ defmodule CodeBasics.Robot do
   @derive [CodeBasics.Teller]
   defstruct [:name]
 end
-
-
