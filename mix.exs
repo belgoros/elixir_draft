@@ -5,7 +5,7 @@ defmodule ElixirDraft.MixProject do
     [
       app: :elixir_draft,
       version: "0.1.0",
-      elixir: "~> 1.15",
+      elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       elixirc_paths: elixirc_paths(Mix.env())
