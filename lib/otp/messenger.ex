@@ -4,8 +4,7 @@ defmodule Otp.Messenger do
     # Simulate some processing time
     Process.sleep(3000)
     # Boom, it will raise an error!
-    IO.puts("Sending message to #{3 + "a"}")
-    {:ok, "sent"}
+    raise "simulated failure for phone number 3"
   end
 
   def send_message(phone_number) do

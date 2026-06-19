@@ -3,7 +3,7 @@ defmodule TodoList do
 
   def new, do: %TodoList{}
 
-  def add_entry(todo_list, entry) do
+  def add_entry( %TodoList{} = todo_list, entry) do
     entry = Map.put(entry, :id, todo_list.auto_id)
 
     new_entries =
@@ -16,7 +16,7 @@ defmodule TodoList do
     %TodoList{todo_list | entries: new_entries, auto_id: todo_list.auto_id + 1}
   end
 
-  def update_entry(todo_list, entry_id, updater_fun) do
+  def update_entry(%TodoList{} = todo_list, entry_id, updater_fun) do
     case Map.fetch(todo_list.entries, entry_id) do
       :error ->
         todo_list
@@ -28,11 +28,11 @@ defmodule TodoList do
     end
   end
 
-  def update_entry(todo_list, %{} = new_entry) do
+  def update_entry(%TodoList{} =todo_list, %{} = new_entry) do
     update_entry(todo_list, new_entry.id, fn _ -> new_entry end)
   end
 
-  def delete_entry(todo_list, entry_id) do
+  def delete_entry(%TodoList{} = todo_list, entry_id) do
     %TodoList{todo_list | entries: Map.delete(todo_list.entries, entry_id)}
   end
 
