@@ -1,6 +1,6 @@
 defmodule ElixirDraft.Draft do
   def print() do
-    guess = "1"
+    guess = String.to_integer("1")
     number_to_guess = 10
 
     message =
